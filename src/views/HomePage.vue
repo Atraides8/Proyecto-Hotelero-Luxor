@@ -1,24 +1,33 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title>Blank</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
+<ion-app>
+    <ion-menu content-id="main-content">
+      <ion-header>
         <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
+          <ion-title>Menú</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item router-link="/home">Inicio</ion-item>
+          <ion-item router-link="/profile">Perfil</ion-item>
+          <ion-item router-link="/settings">Configuración</ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <div id="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title></ion-title>
         </ion-toolbar>
       </ion-header>
 
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
-    </ion-content>
-  </ion-page>
+      <router-view></router-view>
+    </div>
+  </ion-app>
 </template>
 
 <script setup lang="ts">
