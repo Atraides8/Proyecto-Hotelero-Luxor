@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/HomePage.vue'
+import HomePage from '../views/HomePage.vue';
+import RegistrationPage from '../views/RegistrationPage.vue'; // Importar la página de registro
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/home',
     name: 'Home',
     component: HomePage
+  },
+  {
+    path: '/register', // Definir la nueva ruta para la página de registro
+    name: 'Register',
+    component: RegistrationPage // Asignar el componente de la página de registro
   }
 ]
 
@@ -19,4 +25,4 @@ const router = createRouter({
   routes
 })
 
-export default router
+export default router;
