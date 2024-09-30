@@ -6,6 +6,8 @@ import ReservaPage from '@/views/ReservaPage.vue';
 import ContactPage from '@/views/ContactPage.vue';
 import LoginPage from '@/views/LoginPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import RecoverAccountPage from '@/views/RecoverAccountPage.vue';
+import ReservationHistoryPage from '@/views/ReservationHistoryPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -46,7 +48,19 @@ const routes: Array<RouteRecordRaw> = [
     path: '/reserva',
     name: 'Reserva',
     component: ReservaPage
+  },
+
+  {
+    path: '/recover-account',
+    name: 'RecoverAccount',
+    component: () => import('@/views/RecoverAccountPage.vue')
+  },
+  {
+    path: '/reservation-history',
+    name: 'ReservationHistory',
+    component: () => import('@/views/ReservationHistoryPage.vue')
   }
+  
 ]
 
 const router = createRouter({
