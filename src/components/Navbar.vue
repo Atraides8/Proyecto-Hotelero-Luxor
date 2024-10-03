@@ -1,4 +1,3 @@
-<!-- Navbar.vue -->
 <template>
   <!-- Menú Desplegable -->
   <ion-menu side="start" menu-id="first" content-id="main-content">
@@ -23,7 +22,6 @@
       <!-- Botón desplegable (menú) a la izquierda -->
       <ion-buttons slot="start">
         <ion-menu-button menu="first"></ion-menu-button>
-        <!-- Usar router-link para navegación -->
         <router-link to="/home" class="navbar-title">
           <ion-button fill="clear">
             <ion-title>Hotel Luxor</ion-title>
@@ -32,9 +30,9 @@
       </ion-buttons>
 
       <!-- Botones centrados -->
-      <ion-buttons slot="secondary" class="center-buttons">
-        <ion-button @click="reservar">Reservar</ion-button>
-        <ion-button @click="viajar">Viajar</ion-button>
+      <ion-buttons class="center-buttons" slot="secondary">
+        <ion-button class="hide-on-mobile" @click="reservar">Reservar</ion-button>
+        <ion-button class="hide-on-mobile" @click="viajar">Viajar</ion-button>
       </ion-buttons>
 
       <!-- Botón de Iniciar sesión a la derecha -->
@@ -59,9 +57,6 @@ export default {
     iniciarSesion() {
       this.$router.push('/login');
     },
-    recuperarCuenta() {
-      this.$router.push('/recover-account');
-    },
     historialReservas() {
       this.$router.push('/reservation-history');
     },
@@ -77,9 +72,46 @@ export default {
   text-decoration: none;
   color: inherit;
 }
+
 .center-buttons {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .center-buttons {
+    display: none; /* Ocultar los botones centrales en pantallas pequeñas */
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  ion-toolbar {
+    justify-content: space-between;
+  }
+
+  ion-title {
+    font-size: 1.2em; /* Tamaño de texto más pequeño en pantallas pequeñas */
+  }
+
+  
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 769px) {
+  .center-buttons {
+    display: flex; /* Mostrar los botones en pantallas grandes */
+  }
+
+  ion-title {
+    font-size: 1.5em; /* Tamaño de texto mayor en pantallas grandes */
+  }
+}
+
+
 </style>
+
+

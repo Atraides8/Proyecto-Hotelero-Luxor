@@ -1,6 +1,5 @@
 <template>
   <div class="home-page">
-    <Navbar />
     <ion-content>
       <div class="inicio-container">
         <h1>Hotel Luxor</h1>

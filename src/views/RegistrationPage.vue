@@ -1,6 +1,5 @@
 <template>
   <ion-page>
-    <Navbar />
     <ion-content>
       <div v-if="!isRegistered" class="container">
         <!-- Área para la imagen de fondo -->
@@ -19,37 +18,37 @@
               <!-- Campo para los nombres -->
               <ion-item>
                 <ion-label position="floating">Nombres</ion-label>
-                <ion-input @ionInput="e => userData.firstName = e.target.value" placeholder="Ingresa tus nombres"></ion-input>
+                <ion-input v-model="userData.firstName" placeholder="Ingresa tus nombres"></ion-input>
               </ion-item>
 
               <!-- Campo para los apellidos -->
               <ion-item>
                 <ion-label position="floating">Apellidos</ion-label>
-                <ion-input @ionInput="e => userData.lastName = e.target.value" placeholder="Ingresa tus apellidos"></ion-input>
+                <ion-input v-model="userData.lastName" placeholder="Ingresa tus apellidos"></ion-input>
               </ion-item>
 
               <!-- Campo para el RUT -->
               <ion-item>
                 <ion-label position="floating">RUT</ion-label>
-                <ion-input @ionInput="e => userData.rut = e.target.value" placeholder="Ingresa tu RUT"></ion-input>
+                <ion-input v-model="userData.rut" placeholder="Ingresa tu RUT"></ion-input>
               </ion-item>
 
               <!-- Campo para el teléfono -->
               <ion-item>
                 <ion-label position="floating">Teléfono</ion-label>
-                <ion-input @ionInput="e => userData.phone = e.target.value" type="tel" placeholder="Ingresa tu teléfono"></ion-input>
+                <ion-input v-model="userData.phone" type="tel" placeholder="Ingresa tu teléfono"></ion-input>
               </ion-item>
 
               <!-- Campo para el correo electrónico -->
               <ion-item>
                 <ion-label position="floating">Correo Electrónico</ion-label>
-                <ion-input @ionInput="e => userData.email = e.target.value" type="email" placeholder="Ingresa tu correo"></ion-input>
+                <ion-input v-model="userData.email" type="email" placeholder="Ingresa tu correo"></ion-input>
               </ion-item>
 
               <!-- Campo para la contraseña -->
               <ion-item>
                 <ion-label position="floating">Contraseña</ion-label>
-                <ion-input @ionInput="e => userData.password = e.target.value" type="password" placeholder="Ingresa tu contraseña"></ion-input>
+                <ion-input v-model="userData.password" type="password" placeholder="Ingresa tu contraseña"></ion-input>
               </ion-item>
 
               <!-- Botón de registro -->
@@ -74,15 +73,8 @@
   </ion-page>
 </template>
 
-
-
 <script>
-import Navbar from '@/components/Navbar.vue';
-
 export default {
-  components: {
-    Navbar
-  },
   data() {
     return {
       userData: {
@@ -97,49 +89,80 @@ export default {
     };
   },
   methods: {
-  registerUser() {
-    // Imprimir en la consola el estado de los campos
-    console.log(this.userData);
+    registerUser() {
+      // Validación simple para asegurarse de que todos los campos estén llenos
+      if (
+        !this.userData.firstName ||
+        !this.userData.lastName ||
+        !this.userData.rut ||
+        !this.userData.phone ||
+        !this.userData.email ||
+        !this.userData.password
+      ) {
+        alert('Por favor, rellena todos los campos.');
+        return;
+      }
 
-    // Validación para asegurarse de que todos los campos están llenos
-    if (
-      !this.userData.firstName.trim() ||
-      !this.userData.lastName.trim() ||
-      !this.userData.rut.trim() ||
-      !this.userData.phone.trim() ||
-      !this.userData.email.trim() ||
-      !this.userData.password.trim()
-    ) {
-      alert('Por favor, rellena todos los campos.');
-      return;
+      // Cambia el estado a registrado
+      this.isRegistered = true;
     }
-    
-    // Cambia el estado a true
-    this.isRegistered = true;
   }
-}
-
 }
 </script>
 
 <style scoped>
-
+/* Configuración de fondo del contenido */
 ion-content {
   --background: url('/registro.jpg') no-repeat center center / cover;
 }
 
+/* Contenedor del formulario */
 .container {
   display: flex;
-  justify-content: space-between;
-  align-items: center; /* Ajuste para centrar verticalmente */
-  height: 100%; /* Asegúrate de que el contenedor llene toda la altura disponible */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Asegura que ocupe toda la pantalla */
+  padding: 20px;
 }
 
-
-
+/* Estilo de la tarjeta de registro */
 .register-card {
-  width: 30%;
-  margin-right: 50px; /* Ajusta según sea necesario */
-  background-color: rgba(255, 255, 255, 0.8); /* Opcional: para mejorar la legibilidad sobre el fondo */
+  width: 100%;
+  max-width: 400px; /* Ancho máximo en pantallas grandes */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
 }
+
+/* Ocultar la imagen de fondo en pantallas pequeñas */
+.background-image {
+  display: none;
+}
+
+/* Media query para pantallas grandes */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .background-image {
+    display: block;
+    width: 50%; /* Ocupa la mitad de la pantalla en pantallas grandes */
+  }
+
+  .register-card {
+    width: 40%;
+    margin-right: 50px;
+  }
+}
+
+@media (min-width: 375px) and (min-height: 667px) {
+  ion-input {
+    --padding-top: 33px;
+  }
+}
+
+
+
+
 </style>

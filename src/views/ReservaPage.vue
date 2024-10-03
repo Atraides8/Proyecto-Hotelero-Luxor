@@ -117,36 +117,52 @@
   
   <style scoped>
   .container {
-    padding: 16px;
-  }
-  
-  .search-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  
-  .search-options {
-    margin-bottom: 20px;
-  }
-  
-  .recommended-section {
-    text-align: center;
-  }
-  
+  padding: 16px;
+}
+
+.search-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-buttons ion-button {
+  flex: 1 1 45%;
+}
+
+.search-options {
+  margin-bottom: 20px;
+}
+
+.recommended-section {
+  text-align: center;
+}
+
+.recommendation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.photo-card, .description-card {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 600px) {
   .recommendation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-wrap: nowrap;
   }
-  
-  .photo-card {
+
+  .photo-card, .description-card {
     width: 45%;
+    margin-bottom: 0;
   }
-  
-  .description-card {
-    width: 45%;
-  }
+}
+
   </style>
   

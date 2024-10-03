@@ -1,6 +1,5 @@
 <template>
   <div class="contact-page">
-    <Navbar />
     <ion-content>
       <div class="contact-container">
         <h1>Contacto</h1>
