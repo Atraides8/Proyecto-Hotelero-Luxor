@@ -1,6 +1,5 @@
 <template>
     <ion-page>
-      <Navbar />
       <ion-content>
         <div class="container">
           <!-- Barra de botones para búsqueda -->

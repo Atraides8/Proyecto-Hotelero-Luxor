@@ -1,3 +1,4 @@
+<!-- Navbar.vue -->
 <template>
   <!-- Menú Desplegable -->
   <ion-menu side="start" menu-id="first" content-id="main-content">
@@ -9,9 +10,8 @@
     <ion-content>
       <ion-list>
         <ion-item @click="reservar">Reservar</ion-item>
-        <ion-item @click="viajar">Viajar</ion-item>
         <ion-item @click="iniciarSesion">Iniciar sesión</ion-item>
-        <ion-item @click="recuperarCuenta">Recuperar cuenta</ion-item>
+        <ion-item @click="registrar">Registrarse</ion-item>
         <ion-item @click="historialReservas">Historial de reservas</ion-item>
       </ion-list>
     </ion-content>
@@ -23,7 +23,12 @@
       <!-- Botón desplegable (menú) a la izquierda -->
       <ion-buttons slot="start">
         <ion-menu-button menu="first"></ion-menu-button>
-        <ion-title>Hotel Luxor</ion-title>
+        <!-- Usar router-link para navegación -->
+        <router-link to="/home" class="navbar-title">
+          <ion-button fill="clear">
+            <ion-title>Hotel Luxor</ion-title>
+          </ion-button>
+        </router-link>
       </ion-buttons>
 
       <!-- Botones centrados -->
@@ -35,7 +40,7 @@
       <!-- Botón de Iniciar sesión a la derecha -->
       <ion-buttons slot="end">
         <ion-button @click="iniciarSesion">Iniciar sesión</ion-button>
-        <ion-button @click="perfil">Perfil</ion-button>
+        <ion-button @click="registrar">Registrarse</ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -46,13 +51,13 @@ export default {
   name: 'Navbar',
   methods: {
     reservar() {
-      this.$router.push('/reservar');
+      this.$router.push('/reserva');
     },
     viajar() {
       this.$router.push('/viajar');
     },
     iniciarSesion() {
-      this.$router.push('/iniciar-sesion');
+      this.$router.push('/login');
     },
     recuperarCuenta() {
       this.$router.push('/recover-account');
@@ -60,19 +65,21 @@ export default {
     historialReservas() {
       this.$router.push('/reservation-history');
     },
-    perfil() {
-      this.$router.push('/profile');
-    }
-  }
-}
+    registrar() {
+      this.$router.push('/register');
+    },
+  },
+};
 </script>
 
 <style scoped>
+.navbar-title {
+  text-decoration: none;
+  color: inherit;
+}
 .center-buttons {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
 </style>
-
-  
