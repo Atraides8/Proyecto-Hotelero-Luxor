@@ -113,10 +113,6 @@ export default {
       alert('Por favor, rellena todos los campos.');
       return;
     }
-
-    // Aquí puedes agregar lógica para enviar los datos a una API o backend
-    console.log('Registro de usuario exitoso', this.userData);
-    alert('Registro de usuario exitoso');
     
     // Cambia el estado a true
     this.isRegistered = true;
