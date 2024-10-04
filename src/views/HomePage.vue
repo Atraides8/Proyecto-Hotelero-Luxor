@@ -4,7 +4,7 @@
     <ion-content class="content-custom">
       <!-- Sección de imágenes -->
       <div class="image-slider">
-        <img src="C:\Users\Hogar\Desktop\Nueva carpeta\Proyecto-Hotelero-Luxor\public\img\tipos-habitaciones-hotel.jpg" alt="Habitación de hotel" class="main-image" />
+        <img src="\img\tipos-habitaciones-hotel.jpg" alt="Habitación de hotel" class="main-image" />
       </div>
 
       <!-- Sección de servicios -->
@@ -13,15 +13,15 @@
         <p class="subtitulo">De nuestra propia, vigilia y excelencia</p>
         <div class="services-grid">
           <div class="service-card">
-            <img src="C:\Users\Hogar\Desktop\Nueva carpeta\Proyecto-Hotelero-Luxor\public\img\restaurant.jpg" alt="Servicio 1" />
+            <img src="\img\restaurant.jpg" alt="Servicio 1" />
             <p>Restaurante</p>
           </div>
           <div class="service-card">
-            <img src="C:\Users\Hogar\Desktop\Nueva carpeta\Proyecto-Hotelero-Luxor\public\img\lujo.png" alt="Servicio 2" />
+            <img src="\img\lujo.png" alt="Servicio 2" />
             <p>Suites exclusivas</p>
           </div>
           <div class="service-card">
-            <img src="C:\Users\Hogar\Desktop\Nueva carpeta\Proyecto-Hotelero-Luxor\public\img\spa.jpg" alt="Servicio 3" />
+            <img src="\img\spa.jpg" alt="Servicio 3" />
             <p>Spa</p>
           </div>
         </div>
