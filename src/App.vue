@@ -8,6 +8,7 @@
   </ion-app>
 </template>
 
+
 <script setup lang="ts">
 import { IonApp, IonRouterOutlet, IonContent } from '@ionic/vue';
 import { useRoute } from 'vue-router';

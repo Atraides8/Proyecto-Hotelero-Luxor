@@ -52,7 +52,7 @@
               </ion-item>
 
               <!-- Botón de registro -->
-              <ion-button expand="block" color="primary" @click="registerUser">Registrarse</ion-button>
+              <ion-button expand="block" class="custom-button" @click="registerUser">Registrarse</ion-button>
             </ion-list>
           </ion-card-content>
         </ion-card>
@@ -162,7 +162,9 @@ ion-content {
   }
 }
 
-
-
-
+/* Estilos para el botón de registro */
+.custom-button {
+  --background: #b59d54; /* Color dorado */
+  --color: white; /* Texto blanco */
+}
 </style>
