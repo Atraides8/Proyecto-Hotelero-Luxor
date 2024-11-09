@@ -1,0 +1,7 @@
+{
+  "name": "Cadena Hotelera Luxor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
