@@ -1,82 +1,146 @@
 <template>
-  <div>
-    <ion-content>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Iniciar Sesión</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      
-      <ion-grid>
-        <ion-row class="ion-justify-content-center">
-          <ion-col size-md="6" size-sm="12">
-            <!-- Formulario de inicio de sesión -->
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>Acceder a tu cuenta</ion-card-title>
-              </ion-card-header>
-              
-              <ion-card-content>
-                <ion-item>
-                  <ion-label position="floating">Correo Electrónico</ion-label>
-                  <ion-input type="email" v-model="email" required></ion-input>
-                </ion-item>
+  <ion-content class="login-page">
+    <div class="background-image"></div>
 
-                <ion-item>
-                  <ion-label position="floating">Contraseña</ion-label>
-                  <ion-input type="password" v-model="password" required></ion-input>
-                </ion-item>
+    <ion-grid class="center-content">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-md="4" size-sm="10" size-xs="12">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Iniciar Sesión</ion-card-title>
+            </ion-card-header>
 
-                <ion-button expand="block" @click="iniciarSesion">Iniciar Sesión</ion-button>
-                
-                <ion-text color="medium" class="ion-text-center">
-                  <p>¿Olvidaste tu contraseña? 
-                    <ion-router-link :to="'/recover-account'">Recupérala aquí</ion-router-link>
-                  </p>
-                </ion-text>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-content>
-  </div>
+            <ion-card-content>
+              <!-- Campo de correo electrónico -->
+              <ion-item>
+                <ion-label position="floating">Correo Electrónico</ion-label>
+                <ion-input
+                  type="email"
+                  v-model="email"
+                  @ionBlur="validateEmail"
+                  required
+                ></ion-input>
+              </ion-item>
+              <p v-if="emailError" class="error-text">{{ emailError }}</p>
+
+              <!-- Campo de contraseña -->
+              <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input
+                  type="password"
+                  v-model="password"
+                  @ionBlur="validatePassword"
+                  required
+                ></ion-input>
+              </ion-item>
+              <p v-if="passwordError" class="error-text">{{ passwordError }}</p>
+
+              <!-- Botones de acción -->
+              <ion-button
+                expand="block"
+                @click="login"
+                :disabled="!isFormValid"
+              >
+                Iniciar Sesión
+              </ion-button>
+
+              <ion-button
+                expand="block"
+                color="medium"
+                fill="outline"
+                router-link="/RecoverAccountPage.vue"
+              >
+                ¿Olvidaste tu contraseña?
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue';
-
 export default {
-  components: {
-    Navbar
-  },
   data() {
     return {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: "",
+      emailError: "",
+      passwordError: "",
+    };
+  },
+  computed: {
+    isFormValid() {
+      return this.email && this.password && !this.emailError && !this.passwordError;
+    },
   },
   methods: {
-    iniciarSesion() {
-      // Aquí puedes agregar la lógica para la autenticación del usuario
-      if (this.email && this.password) {
-        // Simulación de inicio de sesión
-        this.$router.push('/profile');
+    validateEmail() {
+      const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      if (!this.email) {
+        this.emailError = "El correo es obligatorio.";
+      } else if (!emailPattern.test(this.email)) {
+        this.emailError = "El correo no es válido.";
       } else {
-        // Manejar errores, como campos vacíos
-        console.error('Por favor, ingresa tu correo y contraseña');
+        this.emailError = "";
       }
-    }
-  }
-}
+    },
+    validatePassword() {
+      if (!this.password) {
+        this.passwordError = "La contraseña es obligatoria.";
+      } else if (this.password.length < 6) {
+        this.passwordError = "La contraseña debe tener al menos 6 caracteres.";
+      } else {
+        this.passwordError = "";
+      }
+    },
+    login() {
+      // Simular credenciales predefinidas
+      const predefinedEmail = "usuario@ejemplo.com";
+      const predefinedPassword = "123456";
+
+      if (this.email === predefinedEmail && this.password === predefinedPassword) {
+        alert("Inicio de sesión exitoso");
+        console.log("Usuario autenticado:", { email: this.email });
+      } else {
+        alert("Correo o contraseña incorrectos");
+        console.log("Intento fallido de inicio de sesión");
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
-ion-content {
-  --background: #f8f9fa;
+.login-page {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-ion-card {
-  margin-top: 50px;
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('/room.png'); /* Cambia esta ruta según tu imagen */
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.center-content {
+  z-index: 1;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9em;
+  margin: 0.2em 0;
 }
 </style>

@@ -49,7 +49,7 @@ export default {
   name: 'Navbar',
   methods: {
     reservar() {
-      this.$router.push('/reserva');
+      this.$router.push('/reserve');
     },
     viajar() {
       this.$router.push('/viajar');

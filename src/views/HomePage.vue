@@ -1,6 +1,5 @@
 <template>
   <ion-page>
-    <!-- Contenido principal -->
     <ion-content class="content-custom">
       <!-- Sección de imágenes -->
       <div class="image-slider">
@@ -13,68 +12,84 @@
         <p class="subtitulo">De nuestra propia, vigilia y excelencia</p>
         <div class="services-grid">
           <div class="service-card">
-            <img src="\img\restaurant.jpg" alt="Servicio 1" />
+            <img src="\img\restaurant.jpg" alt="Restaurante" />
             <p>Restaurante</p>
           </div>
           <div class="service-card">
-            <img src="\img\lujo.png" alt="Servicio 2" />
+            <img src="\img\lujo.png" alt="Suites exclusivas" />
             <p>Suites exclusivas</p>
           </div>
           <div class="service-card">
-            <img src="\img\spa.jpg" alt="Servicio 3" />
+            <img src="\img\spa.jpg" alt="Spa" />
             <p>Spa</p>
           </div>
         </div>
       </div>
 
-      <!-- Sección de botones para SPA y Restaurant -->
+      <!-- Sección de información -->
       <div class="info-section">
         <div class="info-card">
           <h3>Spa</h3>
-          <p>Relájate y recarga energías con nuestros tratamientos de spa exclusivos.</p>
+          <p>Relájate y recarga energías con nuestros tratamientos exclusivos.</p>
         </div>
         <div class="info-card">
-          <h3>Restaurant</h3>
-          <p>Deléitate con una experiencia culinaria inigualable en nuestro restaurant gourmet.</p>
+          <h3>Restaurante</h3>
+          <p>Disfruta de una experiencia culinaria inigualable en nuestro restaurante gourmet.</p>
         </div>
       </div>
 
-      <!-- Botón de reserva -->
-      <ion-button expand="full" class="reserve-button" @click="goToReserva">Hacer Reserva</ion-button>
+      <!-- Botones de acciones -->
+      <ion-button expand="full" class="reserve-button" @click="goToReserva">
+        Hacer Reserva
+      </ion-button>
+      <ion-button expand="full" class="history-button" @click="goToReservationHistory">
+        Historial de Reservas
+      </ion-button>
 
-      <!-- Nueva Sección Inferior -->
+      <!-- Botón de recuperación de cuenta -->
+      <ion-button expand="full" class="recover-account-button" router-link="/recover-account">
+        ¿Olvidaste tu contraseña?
+      </ion-button>
+
+      <!-- Botón de contacto -->
       <div class="footer-section">
-        <!-- Cambiamos el enlace por un router-link -->
-        <router-link to="/contact" class="footer-link">Contacto</router-link>
+        <router-link to="/contact" class="footer-link">
+          <ion-button expand="full" class="contact-button">Contacto</ion-button>
+        </router-link>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
-<script>
-export default {
-  name: 'HomePage',
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "HomePage",
   methods: {
-    goToReserva() {
-      this.$router.push('/reserva'); // Redirigir a la página de reservas
-    }
-  }
-};
+    async goToReserva() {
+      this.$router.push("/reserve");
+    },
+    async goToReservationHistory() {
+      const menu = document.querySelector("ion-menu");
+      if (menu && (await menu.isOpen())) {
+        await menu.close();
+      }
+      this.$router.push("/reservation-history");
+    },
+  },
+});
 </script>
 
 <style scoped>
-
-.title-custom {
-  color: white; /* Texto blanco */
-}
-
-/* Estilos del contenido */
+/* Fondo oscuro y texto claro */
 .content-custom {
   --background: black; /* Fondo negro */
-  color: white; /* Texto en blanco */
+  color: white; /* Texto blanco */
   padding: 16px;
 }
 
+/* Estilos del slider de imágenes */
 .image-slider {
   text-align: center;
   margin-bottom: 20px;
@@ -85,6 +100,7 @@ export default {
   border-radius: 8px;
 }
 
+/* Sección de servicios */
 .services-section h2 {
   color: white;
   text-align: center;
@@ -93,7 +109,7 @@ export default {
 
 .subtitulo {
   text-align: center;
-  color: #b59d54; /* Subtítulo dorado */
+  color: #b59d54; /* Dorado */
   margin-bottom: 20px;
 }
 
@@ -114,16 +130,10 @@ export default {
   border-radius: 8px;
 }
 
-.description-section {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* Ajustar el margen superior de la sección de info */
+/* Sección de información */
 .info-section {
   display: flex;
   justify-content: space-between;
-  margin-top: -20px; /* Subimos la sección de SPA y Restaurant */
   margin-bottom: 20px;
 }
 
@@ -137,37 +147,19 @@ export default {
   text-align: center;
 }
 
-.reserve-button {
-  --background: #b59d54; /* Botón de reserva dorado */
+/* Estilo de botones */
+.reserve-button,
+.history-button,
+.recover-account-button,
+.contact-button {
+  --background: #b59d54; /* Botones dorados */
   color: white;
   font-weight: bold;
-  margin-top: -15px; /* Subimos el botón de reserva */
+  margin-top: 10px;
 }
 
-/* Ajustar el margen superior de la sección inferior */
-.footer-section {
-  margin-top: -10px; /* Subimos la sección inferior */
-  padding: 20px;
-  background-color: black;
-  text-align: center;
-}
-
+/* Botón de contacto */
 .footer-link {
-  color: #b59d54;
-  margin: 0 10px;
   text-decoration: none;
-  font-weight: bold;
-}
-
-.language-buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.language-button {
-  margin: 0 5px;
-  --border-color: #b59d54; /* Borde dorado */
-  --color: white; /* Texto blanco */
 }
 </style>
