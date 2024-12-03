@@ -1,6 +1,5 @@
 <template>
     <div>
-      <Navbar />
       <ion-content>
         <ion-header>
           <ion-toolbar>
