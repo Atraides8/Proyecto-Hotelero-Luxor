@@ -1,79 +1,74 @@
 <template>
-  <div>
-
-    <ion-content>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Perfil del Usuario</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      
-      <ion-grid>
+  <ion-page>
+    <ion-content class="profile-content">
+      <ion-grid class="ion-padding">
         <ion-row class="ion-justify-content-center">
-          <ion-col size-md="6" size-sm="12">
-            <!-- Card del perfil -->
+          <ion-col size-md="8" size-sm="12">
+            <!-- Sección de información del perfil -->
             <ion-card>
               <ion-card-header>
-                <ion-card-title>Información del Usuario</ion-card-title>
+                <ion-card-title>Tu Información</ion-card-title>
               </ion-card-header>
-              
               <ion-card-content>
                 <ion-item>
-                  <ion-label>Nombre</ion-label>
-                  <ion-text>{{ user.name }}</ion-text>
+                  <ion-label position="floating">Nombre</ion-label>
+                  <ion-input placeholder="Tu nombre"></ion-input>
                 </ion-item>
-
                 <ion-item>
-                  <ion-label>Correo Electrónico</ion-label>
-                  <ion-text>{{ user.email }}</ion-text>
+                  <ion-label position="floating">Correo</ion-label>
+                  <ion-input placeholder="Tu correo"></ion-input>
                 </ion-item>
-
-                <ion-button expand="block" @click="editarPerfil">Editar Perfil</ion-button>
-                <ion-button expand="block" color="danger" @click="cerrarSesion">Cerrar Sesión</ion-button>
+                <ion-item>
+                  <ion-label position="floating">Dirección</ion-label>
+                  <ion-input placeholder="Tu dirección"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Profesión</ion-label>
+                  <ion-input placeholder="Tu profesión"></ion-input>
+                </ion-item>
+                <ion-button expand="block" color="success" class="ion-margin-top">
+                  Guardar Cambios
+                </ion-button>
               </ion-card-content>
             </ion-card>
+
+            <!-- Opciones adicionales -->
+            <ion-list>
+              <ion-item button>
+                <ion-icon slot="start" name="pencil-outline"></ion-icon>
+                <ion-label>Editar Perfil</ion-label>
+              </ion-item>
+              <ion-item button>
+                <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-label>Cambiar Contraseña</ion-label>
+              </ion-item>
+              <ion-item button>
+                <ion-icon slot="start" name="notifications-outline"></ion-icon>
+                <ion-label>Configurar Notificaciones</ion-label>
+              </ion-item>
+            </ion-list>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>
-  </div>
+  </ion-page>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue';
-
 export default {
-  components: {
-    Navbar
-  },
-  data() {
-    return {
-      user: {
-        name: 'Juan Pérez',
-        email: 'juan.perez@example.com'
-      }
-    }
-  },
-  methods: {
-    editarPerfil() {
-      // Lógica para redirigir a la página de edición del perfil
-      this.$router.push('/editar-perfil');
-    },
-    cerrarSesion() {
-      // Lógica para cerrar sesión
-      console.log('Cerrando sesión...');
-      this.$router.push('/login');
-    }
-  }
-}
+  name: 'ProfilePage',
+};
 </script>
 
 <style scoped>
-ion-content {
-  --background: #f8f9fa;
+.profile-content {
+  background: url('/img/hotel-presidente-4s.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 ion-card {
-  margin-top: 50px;
+  --ion-card-background: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+  --ion-card-border-radius: 12px;
+  margin-top: 20px;
 }
 </style>

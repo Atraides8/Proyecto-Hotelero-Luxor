@@ -53,7 +53,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/reservation-history',
     name: 'ReservationHistory',
     component: ReservationHistoryPage
-  }
+  },
+  {
+    path: '/profile',
+    name: 'ProfilePage',
+    component: () => import('@/views/ProfilePage.vue')
+  }  
 ];
 
 const router = createRouter({

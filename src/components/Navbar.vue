@@ -12,6 +12,7 @@
         <ion-item @click="iniciarSesion">Iniciar sesión</ion-item>
         <ion-item @click="registrar">Registrarse</ion-item>
         <ion-item @click="historialReservas">Historial de reservas</ion-item>
+        <ion-item @click="perfil">Perfil</ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
@@ -23,19 +24,17 @@
       <ion-buttons slot="start">
         <ion-menu-button menu="first"></ion-menu-button>
         <router-link to="/home" class="navbar-title">
-          <ion-button fill="clear">
-            <ion-title>Hotel Luxor</ion-title>
-          </ion-button>
+          <ion-title>Hotel Luxor</ion-title>
         </router-link>
       </ion-buttons>
 
       <!-- Botones centrados -->
       <ion-buttons class="center-buttons" slot="secondary">
-        <ion-button class="hide-on-mobile" @click="reservar">Reservar</ion-button>
-        <ion-button class="hide-on-mobile" @click="viajar">Viajar</ion-button>
+        <ion-button @click="reservar">Reservar</ion-button>
+        <ion-button @click="viajar">Viajar</ion-button>
       </ion-buttons>
 
-      <!-- Botón de Iniciar sesión a la derecha -->
+      <!-- Botones a la derecha -->
       <ion-buttons slot="end">
         <ion-button @click="iniciarSesion">Iniciar sesión</ion-button>
         <ion-button @click="registrar">Registrarse</ion-button>
@@ -63,11 +62,15 @@ export default {
     registrar() {
       this.$router.push('/register');
     },
+    perfil() {
+      this.$router.push('/profile'); // Asegúrate de que "/profile" esté registrado en las rutas
+    },
   },
 };
 </script>
 
 <style scoped>
+/* Diseño predeterminado sin personalización adicional */
 .navbar-title {
   text-decoration: none;
   color: inherit;
@@ -79,39 +82,9 @@ export default {
   transform: translateX(-50%);
 }
 
-/* Estilos para pantallas pequeñas */
 @media (max-width: 768px) {
   .center-buttons {
     display: none; /* Ocultar los botones centrales en pantallas pequeñas */
   }
-
-  .hide-on-mobile {
-    display: none;
-  }
-
-  ion-toolbar {
-    justify-content: space-between;
-  }
-
-  ion-title {
-    font-size: 1.2em; /* Tamaño de texto más pequeño en pantallas pequeñas */
-  }
-
-  
 }
-
-/* Estilos para pantallas grandes */
-@media (min-width: 769px) {
-  .center-buttons {
-    display: flex; /* Mostrar los botones en pantallas grandes */
-  }
-
-  ion-title {
-    font-size: 1.5em; /* Tamaño de texto mayor en pantallas grandes */
-  }
-}
-
-
 </style>
-
-

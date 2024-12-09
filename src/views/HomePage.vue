@@ -45,12 +45,6 @@
       <ion-button expand="full" class="history-button" @click="goToReservationHistory">
         Historial de Reservas
       </ion-button>
-
-      <!-- Botón de recuperación de cuenta -->
-      <ion-button expand="full" class="recover-account-button" router-link="/recover-account">
-        ¿Olvidaste tu contraseña?
-      </ion-button>
-
       <!-- Botón de contacto -->
       <div class="footer-section">
         <router-link to="/contact" class="footer-link">
@@ -150,7 +144,6 @@ export default defineComponent({
 /* Estilo de botones */
 .reserve-button,
 .history-button,
-.recover-account-button,
 .contact-button {
   --background: #b59d54; /* Botones dorados */
   color: white;
